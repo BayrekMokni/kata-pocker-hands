@@ -12,6 +12,12 @@ public class HandService {
         HandCombination cardCalculationResult;
         ICardCombinationCalculator cardCalculator;
 
+        cardCalculator = new StraightFlushCard();
+        cardCalculationResult = cardCalculator.execute(cardList);
+        if (cardCalculationResult.getBestCombination().size() == 5){
+            return cardCalculationResult;
+        }
+
         cardCalculator = new FourOfaKindCard();
         cardCalculationResult = cardCalculator.execute(cardList);
         if (cardCalculationResult.getBestCombination().size() == 4){

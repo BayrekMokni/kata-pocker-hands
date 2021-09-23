@@ -149,6 +149,23 @@ public class HandServiceTest {
         assertTrue(handCombination.getBestCombination().containsAll(expectResult));
     }
 
+    @Test
+    public void getBestCombinationShouldReturnStraightFlushResult() {
+        final String ACE_DIAMOND_CARD = "AD";
+        final String KING_DIAMOND_CARD = "KD";
+        final String QUEEN_DIAMOND_CARD = "QD";
+        final String JACK_DIAMOND_CARD = "JD";
+        final String TEN_DIAMOND_CARD = "TD";
+        List<Card> expectResult = Arrays.asList(parseToCard(ACE_DIAMOND_CARD), parseToCard(KING_DIAMOND_CARD), parseToCard(QUEEN_DIAMOND_CARD), parseToCard(JACK_DIAMOND_CARD), parseToCard(TEN_DIAMOND_CARD));
+        List<Card> cardListEntries = buildCardListEntries(Arrays.asList(ACE_DIAMOND_CARD, KING_DIAMOND_CARD, QUEEN_DIAMOND_CARD, JACK_DIAMOND_CARD, TEN_DIAMOND_CARD));
+
+        HandCombination handCombination = handService.getBestCombination(cardListEntries);
+
+        assertEquals(5, handCombination.getBestCombination().size());
+        assertEquals(STRAIGHT_FLUSH, handCombination.getHand());
+        assertTrue(handCombination.getBestCombination().containsAll(expectResult));
+    }
+
     private List<Card> buildCardListEntries(List<String> cards) {
         return cards.stream()
                 .map(CardParserService::parseToCard)
