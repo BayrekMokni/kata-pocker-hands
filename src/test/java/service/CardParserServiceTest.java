@@ -1,5 +1,6 @@
-package model;
+package service;
 
+import model.Card;
 import org.junit.Before;
 import org.junit.Test;
 
