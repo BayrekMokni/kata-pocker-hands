@@ -132,6 +132,23 @@ public class HandServiceTest {
         assertTrue(handCombination.getBestCombination().containsAll(expectResult));
     }
 
+    @Test
+    public void getBestCombinationShouldReturnFourOfAKindResult() {
+        final String ACE_DIAMOND_CARD = "AD";
+        final String QUEEN_SPADE_CARD = "QS";
+        final String QUEEN_DIAMOND_CARD = "QD";
+        final String QUEEN_CLUB_CARD = "QC";
+        final String QUEEN_HEART_CARD = "QH";
+        List<Card> expectResult = Arrays.asList(parseToCard(QUEEN_SPADE_CARD), parseToCard(QUEEN_DIAMOND_CARD), parseToCard(QUEEN_CLUB_CARD), parseToCard(QUEEN_HEART_CARD));
+        List<Card> cardListEntries = buildCardListEntries(Arrays.asList(ACE_DIAMOND_CARD, QUEEN_SPADE_CARD, QUEEN_DIAMOND_CARD, QUEEN_CLUB_CARD, QUEEN_HEART_CARD));
+
+        HandCombination handCombination = handService.getBestCombination(cardListEntries);
+
+        assertEquals(4, handCombination.getBestCombination().size());
+        assertEquals(FOUR_OF_A_KIND, handCombination.getHand());
+        assertTrue(handCombination.getBestCombination().containsAll(expectResult));
+    }
+
     private List<Card> buildCardListEntries(List<String> cards) {
         return cards.stream()
                 .map(CardParserService::parseToCard)
