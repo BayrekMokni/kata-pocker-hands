@@ -5,30 +5,30 @@ import model.HandCombination;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
+import java.util.Map;
 
+import static java.util.stream.Collectors.groupingBy;
 import static model.Hand.FOUR_OF_A_KIND;
-import static model.Hand.PAIR;
 
 public class FourOfaKindCard implements ICardCombinationCalculator {
+
     @Override
     public HandCombination execute(List<Card> cards) {
-        List<Card> duplicatedCards = cards.stream().flatMap(card -> {
-            final AtomicInteger count = new AtomicInteger();
-            final List<Card> duplicatedCard = new ArrayList<>();
-            cards.forEach(cardToCompare -> {
-                if (cardToCompare.getCardValue().getValue() == card.getCardValue().getValue()) {
-                    count.getAndIncrement();
-                }
-                if (count.get() == 2 && !duplicatedCard.contains(card)) {
-                    duplicatedCard.add(card);
-                }
-            });
-            return duplicatedCard.stream();
-        }).collect(Collectors.toList());
-        return new HandCombination()
-                .setHand(FOUR_OF_A_KIND)
-                .setBestCombination(duplicatedCards);
+        HandCombination result = new HandCombination()
+                .setHand(FOUR_OF_A_KIND);
+        Map<Integer, List<Card>> collect = cards.stream()
+                .collect(groupingBy(e -> e.getCardValue().getValue()));
+
+        return result.setBestCombination(calculateCards(collect));
+    }
+
+    private List<Card> calculateCards(Map<Integer, List<Card>> collect) {
+        List<Card> fourCards = new ArrayList<>();
+        collect.values().forEach(entryList -> {
+            if (entryList.size() == 4) {
+                fourCards.addAll(entryList);
+            }
+        });
+        return fourCards;
     }
 }

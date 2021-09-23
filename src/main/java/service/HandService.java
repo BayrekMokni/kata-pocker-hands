@@ -14,49 +14,57 @@ public class HandService {
 
         cardCalculator = new StraightFlushCard();
         cardCalculationResult = cardCalculator.execute(cardList);
-        if (cardCalculationResult.getBestCombination().size() == 5){
+        if (cardCalculationResult.getBestCombination() != null
+                && cardCalculationResult.getBestCombination().size() == 5) {
             return cardCalculationResult;
         }
 
         cardCalculator = new FourOfaKindCard();
         cardCalculationResult = cardCalculator.execute(cardList);
-        if (cardCalculationResult.getBestCombination().size() == 4){
+        if (cardCalculationResult.getBestCombination() != null
+                && cardCalculationResult.getBestCombination().size() == 4) {
             return cardCalculationResult;
         }
 
         cardCalculator = new FullHouseCard();
         cardCalculationResult = cardCalculator.execute(cardList);
-        if (cardCalculationResult.getBestCombination().size() == 5){
+        if (cardCalculationResult.getBestCombination() != null
+                && cardCalculationResult.getBestCombination().size() == 5) {
             return cardCalculationResult;
         }
 
         cardCalculator = new FlushCard();
         cardCalculationResult = cardCalculator.execute(cardList);
-        if (cardCalculationResult.getBestCombination().size() == 5){
+        if (cardCalculationResult.getBestCombination() != null
+                && cardCalculationResult.getBestCombination().size() == 5) {
             return cardCalculationResult;
         }
 
         cardCalculator = new StraightCard();
         cardCalculationResult = cardCalculator.execute(cardList);
-        if (cardCalculationResult.getBestCombination().size() == 5){
+        if (cardCalculationResult.getBestCombination() != null
+                && cardCalculationResult.getBestCombination().size() == 5) {
             return cardCalculationResult;
         }
 
         cardCalculator = new ThreeOfAKindCard();
         cardCalculationResult = cardCalculator.execute(cardList);
-        if (cardCalculationResult.getBestCombination().size() == 3){
+        if (cardCalculationResult.getBestCombination() != null
+                && cardCalculationResult.getBestCombination().size() == 3) {
             return cardCalculationResult;
         }
 
         cardCalculator = new TwoPairCard();
         cardCalculationResult = cardCalculator.execute(cardList);
-        if (cardCalculationResult.getBestCombination().size() == 4){
+        if (cardCalculationResult.getBestCombination() != null
+                && cardCalculationResult.getBestCombination().size() == 4) {
             return cardCalculationResult;
         }
 
         cardCalculator = new PairCard();
         cardCalculationResult = cardCalculator.execute(cardList);
-        if (cardCalculationResult.getBestCombination().size() == 2){
+        if (cardCalculationResult.getBestCombination() != null
+                && cardCalculationResult.getBestCombination().size() == 2) {
             return cardCalculationResult;
         }
 

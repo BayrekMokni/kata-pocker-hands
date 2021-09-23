@@ -101,9 +101,9 @@ public class HandServiceTest {
     @Test
     public void getBestCombinationShouldReturnFlushResult() {
         final String ACE_DIAMOND_CARD = "AD";
-        final String KING_DIAMOND_CARD = "KD";
+        final String KING_DIAMOND_CARD = "9D";
         final String QUEEN_DIAMOND_CARD = "QD";
-        final String JACK_DIAMOND_CARD = "JD";
+        final String JACK_DIAMOND_CARD = "5D";
         final String TEN_DIAMOND_CARD = "TD";
         List<Card> expectResult = Arrays.asList(parseToCard(ACE_DIAMOND_CARD), parseToCard(KING_DIAMOND_CARD), parseToCard(QUEEN_DIAMOND_CARD), parseToCard(JACK_DIAMOND_CARD), parseToCard(TEN_DIAMOND_CARD));
         List<Card> cardListEntries = buildCardListEntries(Arrays.asList(ACE_DIAMOND_CARD, KING_DIAMOND_CARD, QUEEN_DIAMOND_CARD, JACK_DIAMOND_CARD, TEN_DIAMOND_CARD));
