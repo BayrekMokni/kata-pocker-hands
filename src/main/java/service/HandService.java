@@ -1,27 +1,55 @@
 package service;
 
-import javafx.util.Pair;
 import model.Card;
 import model.HandCombination;
-import service.calculator.HighCard;
-import service.calculator.ICardCombinationCalculator;
-import service.calculator.PairCard;
+import service.calculator.*;
 
 import java.util.List;
 
 public class HandService {
 
     public HandCombination getBestCombination(List<Card> cardList) {
-        HandCombination pairCardResult;
-        ICardCombinationCalculator pairCardCalculator;
+        HandCombination cardCalculationResult;
+        ICardCombinationCalculator cardCalculator;
 
-        pairCardCalculator = new PairCard();
-        pairCardResult = pairCardCalculator.execute(cardList);
-        if (pairCardResult.getBestCombination().size() == 2){
-            return pairCardResult;
+        cardCalculator = new FullHouseCard();
+        cardCalculationResult = cardCalculator.execute(cardList);
+        if (cardCalculationResult.getBestCombination().size() == 5){
+            return cardCalculationResult;
         }
 
-        pairCardCalculator = new HighCard();
-        return pairCardCalculator.execute(cardList);
+        cardCalculator = new FlushCard();
+        cardCalculationResult = cardCalculator.execute(cardList);
+        if (cardCalculationResult.getBestCombination().size() == 5){
+            return cardCalculationResult;
+        }
+
+        cardCalculator = new StraightCard();
+        cardCalculationResult = cardCalculator.execute(cardList);
+        if (cardCalculationResult.getBestCombination().size() == 5){
+            return cardCalculationResult;
+        }
+
+        cardCalculator = new ThreeOfAKindCard();
+        cardCalculationResult = cardCalculator.execute(cardList);
+        if (cardCalculationResult.getBestCombination().size() == 3){
+            return cardCalculationResult;
+        }
+
+        cardCalculator = new TwoPairCard();
+        cardCalculationResult = cardCalculator.execute(cardList);
+        if (cardCalculationResult.getBestCombination().size() == 4){
+            return cardCalculationResult;
+        }
+
+        cardCalculator = new PairCard();
+        cardCalculationResult = cardCalculator.execute(cardList);
+        if (cardCalculationResult.getBestCombination().size() == 2){
+            return cardCalculationResult;
+        }
+
+        cardCalculator = new HighCard();
+        return cardCalculator.execute(cardList);
     }
 }
+

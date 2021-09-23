@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
-import static model.Hand.PAIR;
+import static model.Hand.THREE_OF_A_KIND;
 
-public class PairCard implements ICardCombinationCalculator {
+public class ThreeOfAKindCard implements ICardCombinationCalculator {
 
     @Override
     public HandCombination execute(List<Card> cards) {
@@ -28,7 +28,7 @@ public class PairCard implements ICardCombinationCalculator {
             return duplicatedCard.stream();
         }).collect(Collectors.toList());
         return new HandCombination()
-                .setHand(PAIR)
+                .setHand(THREE_OF_A_KIND)
                 .setBestCombination(duplicatedCards);
     }
 }
